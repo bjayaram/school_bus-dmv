@@ -55,11 +55,9 @@ module.exports = async function (req, res) {
         return;
     }
     try {
-        const { pathname = '/', query = {} } = parse(req.url, true);
-        const { name } = query;
-        const url = getUrlFromPath(pathname);
+        const { name = {} } = parse(req.url, true);
 
-        if (!isValidUrl(url)) {
+        if (name !== "David" || name !== "Jayaram") {
             res.statusCode = 400;
             res.setHeader('Content-Type', 'text/html');
             res.end(`<h1>Bad Request</h1><p>The url <em>${url}</em> is not valid.</p>`);
