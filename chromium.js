@@ -1,7 +1,7 @@
 const chrome = require('chrome-aws-lambda');
 const puppeteer = require('puppeteer-core');
 
-async function getScreenshot(url, type, quality, fullPage, viewportWidth, viewportHeight) {
+/* async function getScreenshot(url, type, quality, fullPage, viewportWidth, viewportHeight) {
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
@@ -17,7 +17,7 @@ async function getScreenshot(url, type, quality, fullPage, viewportWidth, viewpo
     const file = await page.screenshot({ type,  quality, fullPage });
     await browser.close();
     return file;
-}
+} */
 
 async function fillDMVform(name) {
     const browser = await puppeteer.launch({
@@ -25,8 +25,8 @@ async function fillDMVform(name) {
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
         defaultViewport: {
-            width: viewportWidth,
-            height: viewportHeight
+            width: 800,
+            height: 600
         }
     });
 
@@ -56,7 +56,7 @@ async function fillDMVform(name) {
 
     await page.select('#DlState', state)
 
-    const file = await page.screenshot({ type,  quality, fullPage });
+    const file = await page.screenshot({ "png",  80, false });
     await browser.close();
     return file;
 }

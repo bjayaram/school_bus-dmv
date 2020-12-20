@@ -1,6 +1,7 @@
 const { parse } = require('url');
 const { timingSafeEqual } = require('crypto');
-const { getScreenshot } = require('./chromium');
+const { fillDMVform } = require('./chromium');
+//const { getScreenshot } = require('./chromium');
 const { getInt, getUrlFromPath, isValidUrl } = require('./validator');
 
 const SECRET_KEY = process.env.SECRET_KEY;
@@ -54,9 +55,11 @@ module.exports = async function (req, res) {
         return;
     }
     try {
-        const { pathname = '/', query = {} } = parse(req.name, true);
+        const { pathname = '/', query = {} } = parse(req.url, true);
+        const { name } = query;
+        const url = getUrlFromPath(pathname);
 
-        if (!isValidUrl(parse(req.url, true))) {
+        if (!isValidUrl(url)) {
             res.statusCode = 400;
             res.setHeader('Content-Type', 'text/html');
             res.end(`<h1>Bad Request</h1><p>The url <em>${url}</em> is not valid.</p>`);
