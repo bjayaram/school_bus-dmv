@@ -56,10 +56,10 @@ async function fillDMVform(name) {
 
     await page.select('#DlState', state)
 
-    await page.pdf({path: firstname+'.pdf', format: 'A4'});
-    //const file = await page.screenshot({ "png",  80, false });
+    //await page.pdf({path: firstname+'.pdf', format: 'A4'});
+    const file = await page.screenshot({ path: "png",  quality: 80, fullpage: false });
     await browser.close();
-    //return file;
+    return file;
 }
 
 module.exports = { fillDMVform };
