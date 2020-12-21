@@ -60,12 +60,12 @@ module.exports = async function (req, res) {
         if (name !== "David" || name !== "Jayaram") {
             res.statusCode = 400;
             res.setHeader('Content-Type', 'text/html');
-            res.end(`<h1>Bad Request</h1><p>The url <em>${url}</em> is not valid.</p>`);
+            res.end(`<h1>Bad Request</h1><p>The name <em>${name}</em> is not valid.</p>`);
         } else {
             const file = await fillDMVform(name);
             res.statusCode = 200;
-            res.setHeader('Content-Type', `image/${type}`);
-            res.end(file);
+            //res.setHeader('Content-Type', `image/${type}`);
+            //res.end(file);
         }
     } catch (e) {
         res.statusCode = 500;
