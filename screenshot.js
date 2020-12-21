@@ -55,8 +55,8 @@ module.exports = async function (req, res) {
         return;
     }
     try {
-        const { name = {} } = parse(req.url, true);
-
+        const { query = {} } = parse(req.url, true);
+        const { name } = query;
         console.log('name = '+name);
 
         if (name !== "David" || name !== "Jayaram") {
