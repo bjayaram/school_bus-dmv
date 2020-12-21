@@ -55,7 +55,7 @@ module.exports = async function (req, res) {
         return;
     }
     try {
-        const { name = '/' } = parse(req.url, true);
+        const { name = {} } = parse(req.url, true);
 
         console.log('name = '+name);
 
