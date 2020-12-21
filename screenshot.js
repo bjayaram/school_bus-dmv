@@ -66,8 +66,8 @@ module.exports = async function (req, res) {
         } else {
             const file = await fillDMVform(name);
             res.statusCode = 200;
-            //res.setHeader('Content-Type', `image/${type}`);
-            //res.end(file);
+            res.setHeader('Content-Type', `image/${type}`);
+            res.end(file);
         }
     } catch (e) {
         res.statusCode = 500;
