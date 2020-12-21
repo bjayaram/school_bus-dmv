@@ -57,6 +57,8 @@ module.exports = async function (req, res) {
     try {
         const { name = {} } = parse(req.url, true);
 
+        console.log('name = '+name);
+
         if (name !== "David" || name !== "Jayaram") {
             res.statusCode = 400;
             res.setHeader('Content-Type', 'text/html');
